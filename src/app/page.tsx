@@ -24,7 +24,7 @@ import InteractiveVideoDialogContent from "@/app/components/interactive_video_di
 export default function Home() {
   const videoSource = "https://files.vidstack.io/sprite-fight/720p.mp4";
   // const [textTrackContent, setTextTrackContent] = useState<VTTContent>({});
-  const [currentLanguage, setCurrentLanguage] = useState(null);
+  const [currentLanguage] = useState(null);
   // const [shouldShowVideoAndPlayerConfigs, setShouldShowVideoAndPlayerConfigs] =
   // //   useState(true);
   const [backgroundTransparency] = useState(0.5);

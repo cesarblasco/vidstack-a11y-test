@@ -1,4 +1,4 @@
-import { TimeSlider, useMediaState } from "@vidstack/react";
+import { TimeSlider } from "@vidstack/react";
 
 import SliderBreakpoint from "@/app/types/slider_breakpoint";
 import SliderBreakpoints from "../breakpoints/slider_breakpoints";
