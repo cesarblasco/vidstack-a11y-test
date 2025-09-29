@@ -25,7 +25,7 @@ export default function Home() {
   const [currentLanguage, setCurrentLanguage] = useState(null);
   // const [shouldShowVideoAndPlayerConfigs, setShouldShowVideoAndPlayerConfigs] =
   // //   useState(true);
-  // const [backgroundTransparency, setBackgroundTransparency] = useState(0.5);
+  const [backgroundTransparency] = useState(0.5);
 
   const tracks: TextTrackProps[] = [
     {
