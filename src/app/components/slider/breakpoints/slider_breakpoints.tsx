@@ -62,7 +62,7 @@ const SliderBreakpoints: FC<SliderBreakpointsProps> = ({
               >
                 <button
                   className="step-marker"
-                  onClick={() => handleBreakpointClick(event, breakpoint)}
+                  onClick={(event) => handleBreakpointClick(event, breakpoint)}
                   aria-label={`Interactive mode breakpoint at ${breakpoint.time}, click to jump to this step`}
                 ></button>
                 {breakpoint.label && (

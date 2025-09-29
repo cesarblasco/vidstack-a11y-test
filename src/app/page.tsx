@@ -4,6 +4,8 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 
+import { MediaKeyShortcuts } from "@vidstack/react";
+
 import VidstackPlayer from "./components/vidstack_player/vidstack_player";
 
 // import { i18n_ES } from "@/app/i18n/i18n_ES";
@@ -178,7 +180,7 @@ export default function Home() {
   //   },
   // ];
 
-  const mediaPlayerKeyShortcuts = {
+  const mediaPlayerKeyShortcuts: MediaKeyShortcuts = {
     // Space-separated list.
     togglePaused: "k Space",
     toggleMuted: "m",

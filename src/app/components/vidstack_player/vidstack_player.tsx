@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
-import { MediaPlayer, MediaProvider, useMediaState } from "@vidstack/react";
-import { PlayButton, MuteButton } from "@vidstack/react";
+import { MediaPlayer, MediaProvider, MediaKeyShortcuts } from "@vidstack/react";
+// import { PlayButton, MuteButton } from "@vidstack/react";
 import {
   XMarkIcon,
   CheckIcon,
-  PlayIcon,
-  PauseIcon,
-  MuteIcon,
-  VolumeLowIcon,
+  // PlayIcon,
+  // PauseIcon,
+  // MuteIcon,
+  // VolumeLowIcon,
 } from "@vidstack/react/icons";
 
 import {
@@ -34,7 +34,7 @@ interface VidstackPlayerProps {
   textTracks: TextTrackProps[];
   playerTranslations?: Record<string, string> | null;
   interactiveModeBackgroundTransparency: number;
-  mediaPlayerKeyShortcuts: unknown;
+  mediaPlayerKeyShortcuts: MediaKeyShortcuts;
 }
 
 const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
@@ -51,8 +51,8 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   const [currentInteractiveBreakpoint, setCurrentInteractiveBreakpoint] =
     useState<SliderBreakpoint | null>(null);
 
-  const isPaused = useMediaState("paused");
-  const isMuted = useMediaState("muted");
+  // const isPaused = useMediaState("paused");
+  // const isMuted = useMediaState("muted");
   const toggleInteractiveMode = (value: boolean) =>
     setInteractiveModeEnabled(value);
 
