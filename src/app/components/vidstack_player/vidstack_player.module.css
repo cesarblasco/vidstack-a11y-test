@@ -1,0 +1,108 @@
+.wrapper {
+    margin-top: 100px;
+}
+
+.interactive-mode {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    background-color: transparent;
+}
+
+/* Preview tooltip styling for chapter names and time. Mockup tooltip, please implement
+with a tooltip component or with an actual production ready tooltip on the real implementation
+and use proper selectors, etc. */
+.wrapper :global(.vds-slider-preview) {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 100;
+    margin-bottom: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.wrapper :global(.vds-time-slider:hover .vds-slider-preview) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wrapper :global(.vds-slider-value) {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+}
+
+/* Chapter marker styling */
+.wrapper :global(.vds-slider-chapters) {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    height: 10px;
+    margin-top: 18px;
+}
+
+.wrapper :global(.vds-chapter-marker) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 1px;
+    pointer-events: none;
+    z-index: 2;
+    transition: all 0.2s ease;
+    border-right: 2px solid transparent; /* Creates 2px gap between bars */
+    height: 10px;
+}
+
+/* .wrapper :global(.vds-time-slider:hover .vds-chapter-marker) {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+} */
+
+/* Force controls to always be visible */
+.wrapper :global(.vds-controls) {
+    opacity: 1 ;
+    visibility: visible ;
+    pointer-events: auto ;
+}
+
+.wrapper :global(.vds-controls[data-visible="true"]) {
+    opacity: 1 ;
+    visibility: visible ;
+}
+
+/* Ensure controls container stays visible */
+.wrapper :global(media-controls) {
+    opacity: 1 ;
+    visibility: visible ;
+}
+
+/* Black background for bottom controls bar only, see if we can do it with a more specific selector */
+.wrapper :global(.vds-controls-group:last-child) {
+    background-color: black ;
+}
+
+/* Position captions higher to avoid overlap with always-visible controls */
+.wrapper :global(.vds-captions) {
+    bottom: 80px !important; /* Adjust this value as needed */
+}
+
+/* Alternative selector for text cues */
+.wrapper :global(.vds-text-cue) {
+    margin-bottom: 80px !important; /* Adjust this value as needed */
+}
+
+/* Alternative selector for text display */
+.wrapper :global(.vds-text-display) {
+    bottom: 80px !important; /* Adjust this value as needed */
+}

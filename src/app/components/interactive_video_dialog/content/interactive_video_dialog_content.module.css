@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.title, .description, .question {
+    color: white;
+    margin-bottom: 30px;
+}
