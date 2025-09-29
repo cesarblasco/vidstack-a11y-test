@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 
 import VidstackPlayer from "./components/vidstack_player/vidstack_player";
 
-import { i18n_ES } from "@/app/i18n/i18n_ES";
+// import { i18n_ES } from "@/app/i18n/i18n_ES";
 
 import ENTestSubtitle from "@/app/assets/subtitles/custom_subtitles/test_subtitle_en";
 import ESTestSubtitle from "@/app/assets/subtitles/custom_subtitles/test_subtitle_es";
@@ -23,9 +23,9 @@ export default function Home() {
   const videoSource = "https://files.vidstack.io/sprite-fight/720p.mp4";
   // const [textTrackContent, setTextTrackContent] = useState<VTTContent>({});
   const [currentLanguage, setCurrentLanguage] = useState(null);
-  const [shouldShowVideoAndPlayerConfigs, setShouldShowVideoAndPlayerConfigs] =
-    useState(true);
-  const [backgroundTransparency, setBackgroundTransparency] = useState(0.5);
+  // const [shouldShowVideoAndPlayerConfigs, setShouldShowVideoAndPlayerConfigs] =
+  // //   useState(true);
+  // const [backgroundTransparency, setBackgroundTransparency] = useState(0.5);
 
   const tracks: TextTrackProps[] = [
     {
@@ -157,26 +157,26 @@ export default function Home() {
   // We strongly recommend using adaptive streaming protocols such as HLS over providing
   // multiple static media files, see the Video Qualities section for more information.
 
-  const multipleSources = [
-    {
-      src: "https://files.vidstack.io/sprite-fight/1080p.mp4",
-      type: "video/mp4",
-      width: 1920,
-      height: 1080,
-    },
-    {
-      src: "https://files.vidstack.io/sprite-fight/720p.mp4",
-      type: "video/mp4",
-      width: 1280,
-      height: 720,
-    },
-    {
-      src: "https://files.vidstack.io/sprite-fight/480p.mp4",
-      type: "video/mp4",
-      width: 853,
-      height: 480,
-    },
-  ];
+  // const multipleSources = [
+  //   {
+  //     src: "https://files.vidstack.io/sprite-fight/1080p.mp4",
+  //     type: "video/mp4",
+  //     width: 1920,
+  //     height: 1080,
+  //   },
+  //   {
+  //     src: "https://files.vidstack.io/sprite-fight/720p.mp4",
+  //     type: "video/mp4",
+  //     width: 1280,
+  //     height: 720,
+  //   },
+  //   {
+  //     src: "https://files.vidstack.io/sprite-fight/480p.mp4",
+  //     type: "video/mp4",
+  //     width: 853,
+  //     height: 480,
+  //   },
+  // ];
 
   const mediaPlayerKeyShortcuts = {
     // Space-separated list.

@@ -9,7 +9,6 @@ import {
   PlayIcon,
   PauseIcon,
   MuteIcon,
-  VolumeHighIcon,
   VolumeLowIcon,
 } from "@vidstack/react/icons";
 
@@ -35,7 +34,7 @@ interface VidstackPlayerProps {
   textTracks: TextTrackProps[];
   playerTranslations?: Record<string, string> | null;
   interactiveModeBackgroundTransparency: number;
-  mediaPlayerKeyShortcuts: any;
+  mediaPlayerKeyShortcuts: unknown;
 }
 
 const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
@@ -90,27 +89,27 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
     </div>
   );
 
-  // Custom play button for swapped position
-  const getSwappedPlayButton = () => (
-    <PlayButton className="vds-button">
-      {isPaused ? (
-        <PlayIcon className="vds-icon" />
-      ) : (
-        <PauseIcon className="vds-icon" />
-      )}
-    </PlayButton>
-  );
+  // // Custom play button for swapped position
+  // const getSwappedPlayButton = () => (
+  //   <PlayButton className="vds-button">
+  //     {isPaused ? (
+  //       <PlayIcon className="vds-icon" />
+  //     ) : (
+  //       <PauseIcon className="vds-icon" />
+  //     )}
+  //   </PlayButton>
+  // );
 
-  // Custom volume button for swapped position
-  const getSwappedVolumeButton = () => (
-    <MuteButton className="vds-button">
-      {isMuted ? (
-        <MuteIcon className="vds-icon" />
-      ) : (
-        <VolumeLowIcon className="vds-icon" />
-      )}
-    </MuteButton>
-  );
+  // // Custom volume button for swapped position
+  // const getSwappedVolumeButton = () => (
+  //   <MuteButton className="vds-button">
+  //     {isMuted ? (
+  //       <MuteIcon className="vds-icon" />
+  //     ) : (
+  //       <VolumeLowIcon className="vds-icon" />
+  //     )}
+  //   </MuteButton>
+  // );
 
   return (
     <div className={styles.wrapper}>
