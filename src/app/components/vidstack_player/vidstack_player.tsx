@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
-import { MediaPlayer, MediaProvider, MediaKeyShortcuts } from "@vidstack/react";
+import { MediaPlayer, MediaProvider, MediaKeyShortcuts, Menu, ToggleButton } from "@vidstack/react";
 // import { PlayButton, MuteButton } from "@vidstack/react";
 import {
   XMarkIcon,
   CheckIcon,
+  ChevronRightIcon,
+  ComputerIcon,
+  ArrowLeftIcon,
+  MicrophoneIcon,
+  MusicOffIcon,
   // PlayIcon,
   // PauseIcon,
   // MuteIcon,
@@ -51,12 +56,26 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   const [currentInteractiveBreakpoint, setCurrentInteractiveBreakpoint] =
     useState<SliderBreakpoint | null>(null);
 
-  // const isPaused = useMediaState("paused");
-  // const isMuted = useMediaState("muted");
+  const [currentMediaKeyShortcuts, setCurrentMediaKeyShortcuts] = useState(mediaPlayerKeyShortcuts);
+  const [audioDescriptionsEnabled, setAudioDescriptionsEnabled] = useState(false);
   const toggleInteractiveMode = (value: boolean) =>
     setInteractiveModeEnabled(value);
 
   const handleInteractiveVideoDialogOpen = (breakpoint: SliderBreakpoint) => {
+
+    if(breakpoint.breakpointType === "audio-description" && audioDescriptionsEnabled) {
+      const utterance = new SpeechSynthesisUtterance(breakpoint.audioContent);
+      utterance.lang = 'en-US'; 
+      utterance.rate = 1.0;     
+      utterance.pitch = 1.0;   
+
+      utterance.onend = (event) => {
+        console.log("Speech finished:", event);
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+    
     setCurrentInteractiveBreakpoint(breakpoint);
     setIsInteractiveVideoDialogOpen(true);
   };
@@ -110,6 +129,61 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   //     )}
   //   </MuteButton>
   // );
+  
+  const getOtherSettings = () => (
+    <Menu.Root className="vds-menu">
+      <Menu.Button className="vds-menu-item">
+        <ComputerIcon color="black" size={16} className="vds-icon" />
+        <ArrowLeftIcon color="black" size={16} className="vds-menu-close-icon vds-icon" />
+        <span>Other Settings</span>
+        <ChevronRightIcon color="black" size={16} className="vds-menu-open-icon vds-icon" />
+      </Menu.Button>
+      
+      <Menu.Content className="media-menu">
+        <div className="vds-menu-section">
+         <div className="vds-menu-section-body">
+          <div className="vds-menu-item">
+              <div className="vds-menu-item-label">
+                <span style={{marginRight: "10px"}}>Toggle CC shortcut (c) key</span>
+              </div>
+              <div 
+                className="vds-menu-checkbox" 
+                role="menuitemcheckbox" tabIndex={0} 
+                aria-label="Toggle CC shortcut" 
+                aria-checked={currentMediaKeyShortcuts.toggleCaptions !== null}
+                onClick={() => setCurrentMediaKeyShortcuts({...currentMediaKeyShortcuts, toggleCaptions: currentMediaKeyShortcuts.toggleCaptions !== null ? null : "c"})}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </Menu.Content>
+    </Menu.Root>
+  );
+
+  const getAudioDescriptionsButton = () => (
+    // <ToggleButton className="vds-button" aria-label="Toggle Audio Descriptions">
+    //   <MicrophoneIcon className="pressed-icon vds-icon" />
+    //   <ThumbsUpIcon className="not-pressed-icon vds-icon" />
+    // </ToggleButton>
+
+    <CustomVidstackButton
+        tooltipContent={
+          audioDescriptionsEnabled
+            ? "Disable Audio Descriptions"
+            : "Enable Audio Descriptions"
+        }
+        buttonContent={
+          audioDescriptionsEnabled ? (
+            <MusicOffIcon color="white" size={32} />
+          ) : (
+            <MicrophoneIcon color="white" size={32} />
+          )
+        }
+        ariaLabel="Audio Descriptions toggle"
+        ariaPressed={audioDescriptionsEnabled}
+        onClick={() => setAudioDescriptionsEnabled(!audioDescriptionsEnabled)}
+      />
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -117,7 +191,7 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
         title="Sprite Fight"
         src={src}
         aspectRatio="16/9"
-        keyShortcuts={mediaPlayerKeyShortcuts}
+        keyShortcuts={currentMediaKeyShortcuts}
       >
         <MediaProvider />
 
@@ -128,7 +202,9 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
             // 72 other slots positions...
             // Swapping play and volume button positions
             // playButton: getSwappedVolumeButton(), // Volume button in play button position
-            // muteButton: getSwappedPlayButton(), // Play button in volume button position
+            // muteButton: getSwappedPlayButton(), // Play button in volume button position}
+            beforeCaptionButton: getAudioDescriptionsButton(),
+            settingsMenuItemsEnd: getOtherSettings(),
             beforePlayButton: getInteractiveModeButton(),
             timeSlider: (
               <SliderComponent
@@ -150,7 +226,13 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
           backgroundTransparency={interactiveModeBackgroundTransparency}
           onClose={handleInteractiveVideoDialogClose}
         >
-          {currentInteractiveBreakpoint?.content}
+          {currentInteractiveBreakpoint?.breakpointType === "audio-description" && (
+            <div className={styles.audioDescription} role="region" aria-label="Audio Description"/>
+          )}
+
+          {currentInteractiveBreakpoint?.breakpointType  === "question" && (
+              currentInteractiveBreakpoint?.content
+          )}
         </InteractiveVideoDialog>
       </MediaPlayer>
     </div>

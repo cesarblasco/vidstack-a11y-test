@@ -97,8 +97,8 @@ a {
   box-shadow: 0 2px 8px rgba(23, 162, 184, 0.4);
 }
 
-.video-step--default .step-marker {
-  background-color: #6c757d;
+.video-step--audio .step-marker {
+  background-color: green;
   border-color: #ffffff;
   box-shadow: 0 2px 8px rgba(108, 117, 125, 0.4);
 }
@@ -118,6 +118,10 @@ a {
 }
 
 .video-step--info:hover .step-marker {
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.6);
+}
+
+.video-step--audio:hover .step-marker {
   box-shadow: 0 4px 12px rgba(23, 162, 184, 0.6);
 }
 
