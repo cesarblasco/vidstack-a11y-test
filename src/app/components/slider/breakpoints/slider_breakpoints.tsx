@@ -5,12 +5,14 @@ import SliderBreakpoint from "@/app/types/slider_breakpoint";
 interface SliderBreakpointsProps {
   breakpoints: SliderBreakpoint[];
   interactiveModeEnabled: boolean;
+  audioDescriptionsEnabled: boolean;
   onInteractiveVideoDialogOpen: (breakpoint: SliderBreakpoint) => void;
 }
 
 const SliderBreakpoints: FC<SliderBreakpointsProps> = ({
   breakpoints,
   interactiveModeEnabled,
+  audioDescriptionsEnabled,
   onInteractiveVideoDialogOpen,
 }) => {
   const remote = useMediaRemote();
@@ -44,33 +46,45 @@ const SliderBreakpoints: FC<SliderBreakpointsProps> = ({
     onInteractiveVideoDialogOpen(breakpoint);
   };
 
+  const convertSecondsToMinutes = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
   return (
     <>
       {interactiveModeEnabled && (
         <ul className="video-steps">
-          {breakpoints.map((breakpoint) => (
-            <li key={breakpoint.time}>
-              <div
-                key={breakpoint.time}
-                className={`video-step video-step--${
-                  breakpoint.type || "default"
-                }`}
-                style={{
-                  left: `${(breakpoint.time / duration) * 100}%`,
-                }}
-                title={breakpoint.label || `Step at ${breakpoint.time}s`}
-              >
-                <button
-                  className="step-marker"
-                  onClick={(event) => handleBreakpointClick(event, breakpoint)}
-                  aria-label={`Interactive mode breakpoint at ${breakpoint.time}, click to jump to this step`}
-                ></button>
-                {breakpoint.label && (
-                  <div className="step-label">{breakpoint.label}</div>
-                )}
-              </div>
-            </li>
-          ))}
+          {breakpoints.map((breakpoint) => {
+            // Skip rendering if breakpoint is audio-description type and audio descriptions are disabled
+            if (breakpoint.breakpointType === 'audio-description' && !audioDescriptionsEnabled) {
+              return null;
+            }
+            
+            return (
+              <li  
+                  key={breakpoint.time}
+                  className={`video-step video-step--${
+                    breakpoint.type || "default"
+                  }`}
+                  style={{
+                    left: `${(breakpoint.time / duration) * 100}%`,
+                  }}
+                  title={breakpoint.label || `Step at ${breakpoint.time}s`}
+                >
+                  <button
+                    className="step-marker"
+                    onClick={(event) => handleBreakpointClick(event, breakpoint)}
+                    aria-label={`Interactive mode breakpoint at ${convertSecondsToMinutes(breakpoint.time)} minutes with title ${breakpoint.label}, click to jump to this breakpoint`}
+                  ></button>
+                  {breakpoint.label && (
+                    <div className="step-label">{breakpoint.label}</div>
+                  )}
+             
+              </li>
+            );
+          })}
         </ul>
       )}
     </>

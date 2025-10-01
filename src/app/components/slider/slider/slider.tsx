@@ -6,6 +6,7 @@ import SliderBreakpoints from "../breakpoints/slider_breakpoints";
 interface SliderProps {
   breakpoints: SliderBreakpoint[];
   interactiveModeEnabled: boolean;
+  audioDescriptionsEnabled: boolean;
   onInteractiveVideoDialogOpen: (breakpoint: SliderBreakpoint) => void;
 }
 
@@ -19,6 +20,7 @@ interface SliderProps {
 const Slider = ({
   breakpoints,
   interactiveModeEnabled,
+  audioDescriptionsEnabled,
   onInteractiveVideoDialogOpen,
 }: SliderProps) => {
   // const duration = useMediaState("duration");
@@ -56,6 +58,7 @@ const Slider = ({
   // };
 
   return (
+    <>
     <TimeSlider.Root className="vds-time-slider vds-slider" step={2}>
       <TimeSlider.Track className="vds-slider-track" />
       <TimeSlider.TrackFill className="vds-slider-track-fill vds-slider-track" />
@@ -83,13 +86,14 @@ const Slider = ({
 
       
       </TimeSlider.Chapters> */}
-
-      <SliderBreakpoints
-        breakpoints={breakpoints}
-        interactiveModeEnabled={interactiveModeEnabled}
-        onInteractiveVideoDialogOpen={onInteractiveVideoDialogOpen}
-      />
     </TimeSlider.Root>
+     <SliderBreakpoints
+      breakpoints={breakpoints}
+      interactiveModeEnabled={interactiveModeEnabled}
+      audioDescriptionsEnabled={audioDescriptionsEnabled}
+      onInteractiveVideoDialogOpen={onInteractiveVideoDialogOpen}
+    />
+   </>
   );
 };
 

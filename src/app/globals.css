@@ -78,6 +78,10 @@ a {
   position: relative;
 }
 
+.step-marker:focus {
+  outline: 4px solid #007bff;
+}
+
 /* Different types of markers */
 .video-step--important .step-marker {
   background-color: #dc3545;
@@ -101,6 +105,22 @@ a {
   background-color: green;
   border-color: #ffffff;
   box-shadow: 0 2px 8px rgba(108, 117, 125, 0.4);
+}
+
+.video-step--important .step-marker:focus {
+  background-color: #ffffff;
+}
+
+.video-step--warning .step-marker:focus {
+  background-color: #ffffff;
+}
+
+.video-step--info .step-marker:focus {
+  background-color: #ffffff;
+}
+
+.video-step--audio .step-marker:focus {
+  background-color: #ffffff;
 }
 
 /* Hover effects */

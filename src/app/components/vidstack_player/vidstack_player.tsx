@@ -71,6 +71,22 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
     setInteractiveModeEnabled(value);
 
   const handleInteractiveVideoDialogOpen = (breakpoint: SliderBreakpoint) => {
+    if (
+      breakpoint.breakpointType === "audio-description" &&
+      audioDescriptionsEnabled
+    ) {
+      const utterance = new SpeechSynthesisUtterance(breakpoint.audioContent);
+      utterance.lang = "en-US";
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+
+      utterance.onend = (event) => {
+        console.log("Speech finished:", event);
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
     setCurrentInteractiveBreakpoint(breakpoint);
 
     if (
@@ -242,6 +258,7 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
               <SliderComponent
                 breakpoints={sliderBreakpoints}
                 interactiveModeEnabled={interactiveModeEnabled}
+                audioDescriptionsEnabled={audioDescriptionsEnabled}
                 onInteractiveVideoDialogOpen={handleInteractiveVideoDialogOpen}
               />
             ),
