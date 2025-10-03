@@ -199,32 +199,9 @@ export default function Home() {
   //   },
   // ];
 
-  const mediaPlayerKeyShortcuts: MediaKeyShortcuts = {
-    // Space-separated list.
-    togglePaused: "k Space",
-    toggleMuted: "m",
-    toggleFullscreen: "f",
-    togglePictureInPicture: "i",
-    toggleCaptions: null, // could be configured from consumer, for a11y purposes we should disable it seems
-    // Array.
-    seekBackward: ["j", "J", "ArrowLeft"],
-    seekForward: ["l", "L", "ArrowRight"],
-    volumeUp: "ArrowUp",
-    volumeDown: "ArrowDown",
-    speedUp: ">",
-    slowDown: "<",
-    // Custom callback.
-    fooBar: {
-      keys: ["k", "Space"],
-      // onKeyUp({ event, player, remote }) {
-      //   // ...
-      // },
-      // onKeyDown({ event, player, remote }) {
-      //   // ...
-      // },
-    },
-  };
+ 
 
+  
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -275,7 +252,6 @@ export default function Home() {
           textTracks={tracks}
           sliderBreakpoints={sliderBreakpoints}
           interactiveModeBackgroundTransparency={backgroundTransparency}
-          mediaPlayerKeyShortcuts={mediaPlayerKeyShortcuts}
         />
       </main>
     </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useMediaRemote } from '@vidstack/react';
+// import { useMediaRemote } from '@vidstack/react';
 
 import styles from './interactive_video_dialog.module.css';
 
@@ -23,10 +23,10 @@ const InteractiveVideoDialog: React.FC<InteractiveVideoDialogProps> = ({
       dialogRef.current.focus();
     }
   }, [isOpen]);
-  const remote = useMediaRemote();
+  // const remote = useMediaRemote();
 
   const handleClose = () => {
-    remote.play();
+    // remote.play();
     onClose();
   }
 

@@ -94,15 +94,15 @@ and use proper selectors, etc. */
 
 /* Position captions higher to avoid overlap with always-visible controls */
 .wrapper :global(.vds-captions) {
-    bottom: 80px !important; /* Adjust this value as needed */
+    bottom: 80px /* Adjust this value as needed */
 }
 
 /* Alternative selector for text cues */
 .wrapper :global(.vds-text-cue) {
-    margin-bottom: 80px !important; /* Adjust this value as needed */
+    margin-bottom: 80px /* Adjust this value as needed */
 }
 
 /* Alternative selector for text display */
 .wrapper :global(.vds-text-display) {
-    bottom: 80px !important; /* Adjust this value as needed */
+    bottom: 80px /* Adjust this value as needed */
 }

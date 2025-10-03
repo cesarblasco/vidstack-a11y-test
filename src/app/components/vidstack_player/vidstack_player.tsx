@@ -5,8 +5,6 @@ import {
   MediaPlayer,
   MediaProvider,
   MediaKeyShortcuts,
-  Menu,
-  ToggleButton,
 } from "@vidstack/react";
 // import { PlayButton, MuteButton } from "@vidstack/react";
 import {
@@ -36,8 +34,12 @@ import TextTrackProps from "@/app/types/text_track";
 import SliderBreakpoint from "@/app/types/slider_breakpoint";
 import InteractiveVideoDialog from "@/app/components/interactive_video_dialog/dialog/interactive_video_dialog";
 
+
+import { disabledMediaPlayerKeyShortcuts } from "@/app/helpers/video_player_shortcuts";
+
 import styles from "./vidstack_player.module.css";
 import CustomVidstackButton from "../custom_vidstack_button/custom_vidstack_button";
+import CustomSettingsMenu from "../custom_settings_menu/custom_settings_menu";
 
 interface VidstackPlayerProps {
   src?: string | string[];
@@ -45,7 +47,6 @@ interface VidstackPlayerProps {
   textTracks: TextTrackProps[];
   playerTranslations?: Record<string, string> | null;
   interactiveModeBackgroundTransparency: number;
-  mediaPlayerKeyShortcuts: MediaKeyShortcuts;
 }
 
 const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
@@ -54,7 +55,6 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   playerTranslations,
   sliderBreakpoints,
   interactiveModeBackgroundTransparency,
-  mediaPlayerKeyShortcuts,
 }) => {
   const [interactiveModeEnabled, setInteractiveModeEnabled] = useState(true);
   const [isInteractiveVideoDialogOpen, setIsInteractiveVideoDialogOpen] =
@@ -62,11 +62,11 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   const [currentInteractiveBreakpoint, setCurrentInteractiveBreakpoint] =
     useState<SliderBreakpoint | null>(null);
 
-  const [currentMediaKeyShortcuts, setCurrentMediaKeyShortcuts] = useState(
-    mediaPlayerKeyShortcuts
-  );
+  const [currentMediaKeyShortcuts, setCurrentMediaKeyShortcuts] = useState(disabledMediaPlayerKeyShortcuts);
+
   const [audioDescriptionsEnabled, setAudioDescriptionsEnabled] =
     useState(false);
+
   const toggleInteractiveMode = (value: boolean) =>
     setInteractiveModeEnabled(value);
 
@@ -159,55 +159,6 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   //   </MuteButton>
   // );
 
-  const getOtherSettings = () => (
-    <Menu.Root className="vds-menu">
-      <Menu.Button className="vds-menu-item">
-        <ComputerIcon color="black" size={16} className="vds-icon" />
-        <ArrowLeftIcon
-          color="black"
-          size={16}
-          className="vds-menu-close-icon vds-icon"
-        />
-        <span>Other Settings</span>
-        <ChevronRightIcon
-          color="black"
-          size={16}
-          className="vds-menu-open-icon vds-icon"
-        />
-      </Menu.Button>
-
-      <Menu.Content className="media-menu">
-        <div className="vds-menu-section">
-          <div className="vds-menu-section-body">
-            <div className="vds-menu-item">
-              <div className="vds-menu-item-label">
-                <span style={{ marginRight: "10px" }}>
-                  Toggle CC shortcut (c) key
-                </span>
-              </div>
-              <div
-                className="vds-menu-checkbox"
-                role="menuitemcheckbox"
-                tabIndex={0}
-                aria-label="Toggle CC shortcut"
-                aria-checked={currentMediaKeyShortcuts.toggleCaptions !== null}
-                onClick={() =>
-                  setCurrentMediaKeyShortcuts({
-                    ...currentMediaKeyShortcuts,
-                    toggleCaptions:
-                      currentMediaKeyShortcuts.toggleCaptions !== null
-                        ? null
-                        : "c",
-                  })
-                }
-              ></div>
-            </div>
-          </div>
-        </div>
-      </Menu.Content>
-    </Menu.Root>
-  );
-
   const getAudioDescriptionsButton = () => (
     // <ToggleButton className="vds-button" aria-label="Toggle Audio Descriptions">
     //   <MicrophoneIcon className="pressed-icon vds-icon" />
@@ -240,6 +191,7 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
         src={src}
         aspectRatio="16/9"
         keyShortcuts={currentMediaKeyShortcuts}
+        playsInline
       >
         <MediaProvider />
 
@@ -252,7 +204,10 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
             // playButton: getSwappedVolumeButton(), // Volume button in play button position
             // muteButton: getSwappedPlayButton(), // Play button in volume button position}
             beforeCaptionButton: getAudioDescriptionsButton(),
-            settingsMenuItemsEnd: getOtherSettings(),
+            settingsMenuItemsEnd: <CustomSettingsMenu
+              currentMediaKeyShortcuts={currentMediaKeyShortcuts}
+              onSetMediaPlayerKeyShortcuts={setCurrentMediaKeyShortcuts}
+            />,
             beforePlayButton: getInteractiveModeButton(),
             timeSlider: (
               <SliderComponent

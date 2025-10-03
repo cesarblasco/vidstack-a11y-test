@@ -4,15 +4,14 @@ const CaptionsMenu = () => {
   const options = useCaptionOptions(),
     hint = options.selectedTrack?.label ?? 'Off';
 
-    // console.log({options});
   return (
     <Menu.Root>
       <Menu.Button disabled={options.disabled}>Captions ({hint})</Menu.Button>
       <Menu.Content>
-        <Menu.RadioGroup value={options.selectedValue}>
+        <Menu.RadioGroup className="vds-radio-group" value={options.selectedValue}>
           {options.map(({ label, value, select }) => (
-            <Menu.Radio value={value} onSelect={select} key={value}>
-              {label}
+            <Menu.Radio className="vds-radio" value={value} onSelect={select} key={value}>
+               <span className="vds-radio-label">{label}</span>
             </Menu.Radio>
           ))}
         </Menu.RadioGroup>

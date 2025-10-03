@@ -1,0 +1,355 @@
+/* Remove default focus outlines and apply custom red focus styling */
+.wrapper :global([data-focus]) {
+    outline: none ;
+    box-shadow: 0 0 0 2px #ff0000 ;
+}
+
+.wrapper :global([data-focus]:focus) {
+    outline: none ;
+    box-shadow: 0 0 0 2px #ff0000 ;
+}
+
+/* Remove default focus styles from all Vidstack elements */
+.wrapper :global(.vds-button:focus),
+.wrapper :global(.vds-slider:focus),
+.wrapper :global(.vds-menu:focus),
+.wrapper :global(.vds-menu-item:focus),
+.wrapper :global(.vds-control:focus),
+.wrapper :global(.vds-button[data-focus]),
+.wrapper :global(.vds-slider[data-focus]),
+.wrapper :global(.vds-menu[data-focus]),
+.wrapper :global(.vds-menu-item[data-focus]),
+.wrapper :global(.vds-control[data-focus]) {
+    outline: none ;
+    box-shadow: 0 0 0 2px #ff0000 ;
+}
+
+/* Override any default Vidstack focus ring styles */
+.wrapper :global(.vds-button:focus-visible),
+.wrapper :global(.vds-slider:focus-visible),
+.wrapper :global(.vds-menu:focus-visible),
+.wrapper :global(.vds-menu-item:focus-visible),
+.wrapper :global(.vds-control:focus-visible) {
+    outline: none ;
+    box-shadow: 0 0 0 2px #ff0000 ;
+}
+
+/* Custom text color - Yellow for all text labels in the player */
+.wrapper :global(.vds-time),
+.wrapper :global(.vds-time-current),
+.wrapper :global(.vds-time-duration),
+.wrapper :global(.vds-time-divider),
+.wrapper :global(.vds-slider-value),
+.wrapper :global(.vds-slider-label),
+.wrapper :global(.vds-menu-label),
+.wrapper :global(.vds-menu-item-label),
+.wrapper :global(.vds-button-label),
+.wrapper :global(.vds-tooltip),
+.wrapper :global(.vds-tooltip-content),
+.wrapper :global(.vds-captions),
+.wrapper :global(.vds-text-cue),
+.wrapper :global(.vds-text-display),
+.wrapper :global(.vds-chapter-title),
+.wrapper :global(.vds-chapter-title-text),
+.wrapper :global(.vds-live-indicator),
+.wrapper :global(.vds-live-indicator-text),
+.wrapper :global(.vds-volume-label),
+.wrapper :global(.vds-playback-rate-label),
+.wrapper :global(.vds-quality-label),
+.wrapper :global(.vds-caption-label),
+.wrapper :global(.vds-audio-label),
+.wrapper :global(.vds-subtitle-label),
+.wrapper :global(.vds-chapter-label),
+.wrapper :global(.vds-live-label),
+.wrapper :global(.vds-buffering-indicator),
+.wrapper :global(.vds-loading-indicator),
+.wrapper :global(.vds-error-message),
+.wrapper :global(.vds-error-title),
+.wrapper :global(.vds-error-description) {
+    color: #ffff00 ;
+}
+
+/* Target any remaining text elements with broader selectors */
+.wrapper :global(.vds-controls-group *),
+.wrapper :global(.vds-controls *),
+.wrapper :global(.vds-menu *),
+.wrapper :global(.vds-tooltip *),
+.wrapper :global(.vds-captions *) {
+    color: #ffff00 ;
+} 
+
+/* Ensure text in buttons and interactive elements is yellow */
+.wrapper :global(.vds-button),
+.wrapper :global(.vds-menu-item),
+.wrapper :global(.vds-control) {
+    color: #ffff00 ;
+}
+
+/* Override any inherited text colors */
+.wrapper :global(.vds-controls-group),
+.wrapper :global(.vds-controls),
+.wrapper :global(.vds-menu),
+.wrapper :global(.vds-tooltip) {
+    color: #ffff00 ;
+}
+
+/* Custom video slider styling - Yellow color */
+.wrapper :global(.vds-time-slider),
+.wrapper :global(.vds-slider) {
+    --vds-slider-track-color: #ffff00 ;
+    --vds-slider-track-fill-color: #ffff00 ;
+    --vds-slider-progress-color: #ffff00 ;
+    --vds-slider-thumb-color: #ffff00 ;
+    --vds-slider-thumb-border-color: #ffff00 ;
+}
+
+/* Slider track styling */
+.wrapper :global(.vds-slider-track) {
+    background-color: rgba(255, 255, 0, 0.3) ;
+    border: 1px solid #ffff00 ;
+}
+
+/* Slider track fill (progress) */
+.wrapper :global(.vds-slider-track-fill) {
+    background-color: #ffff00 ;
+}
+
+/* Slider progress */
+.wrapper :global(.vds-slider-progress) {
+    background-color: #ffff00 ;
+}
+
+/* Slider thumb (handle) */
+.wrapper :global(.vds-slider-thumb) {
+    background-color: #ffff00 ;
+    border: 2px solid #ffff00 ;
+    box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.3) ;
+}
+
+/* Slider thumb hover state */
+.wrapper :global(.vds-slider-thumb:hover) {
+    background-color: #ffff00 ;
+    border: 2px solid #ffff00 ;
+    box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.4) ;
+}
+
+/* Slider thumb focus state */
+.wrapper :global(.vds-slider-thumb:focus),
+.wrapper :global(.vds-slider-thumb[data-focus]) {
+    background-color: #ffff00 ;
+    border: 2px solid #ffff00 ;
+    box-shadow: 0 0 0 2px #ff0000, 0 0 0 4px rgba(255, 255, 0, 0.4) ;
+}
+
+/* Interactive breakpoints styling */
+.wrapper :global(.video-steps) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.wrapper :global(.video-step) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+}
+
+.wrapper :global(.step-marker) {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ffff00 ;
+    border: 2px solid #ffff00 ;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.3) ;
+}
+
+.wrapper :global(.step-marker:hover) {
+    background-color: #ffff00 ;
+    border: 2px solid #ffff00 ;
+    box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.4) ;
+    transform: scale(1.2);
+}
+
+.wrapper :global(.step-marker:focus),
+.wrapper :global(.step-marker[data-focus]) {
+    background-color: #ffff00 ;
+    border: 2px solid #ffff00 ;
+    box-shadow: 0 0 0 2px #ff0000, 0 0 0 4px rgba(255, 255, 0, 0.4) ;
+}
+
+.wrapper :global(.step-label) {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffff00 ;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    border: 1px solid #ffff00 ;
+}
+
+/* Custom menu styling - Black backgrounds for better yellow text contrast */
+.wrapper :global(.vds-menu),
+.wrapper :global(.vds-menu-content),
+.wrapper :global(.vds-menu-items),
+.wrapper :global(.vds-menu-item),
+.wrapper :global(.vds-settings-menu),
+.wrapper :global(.vds-settings-menu-content),
+.wrapper :global(.vds-captions-menu),
+.wrapper :global(.vds-captions-menu-content),
+.wrapper :global(.vds-audio-menu),
+.wrapper :global(.vds-audio-menu-content),
+.wrapper :global(.vds-quality-menu),
+.wrapper :global(.vds-quality-menu-content),
+.wrapper :global(.vds-playback-rate-menu),
+.wrapper :global(.vds-playback-rate-menu-content),
+.wrapper :global(.vds-chapters-menu),
+.wrapper :global(.vds-chapters-menu-content) {
+    background-color: #000000 ;
+    /* border: 1px solid #ffff00 ; */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) ;
+}
+
+/* Menu item hover states */
+.wrapper :global(.vds-menu-item:hover),
+.wrapper :global(.vds-menu-item[data-hover]) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Menu item focus states */
+.wrapper :global(.vds-menu-item:focus),
+.wrapper :global(.vds-menu-item[data-focus]) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+    outline: none ;
+    box-shadow: 0 0 0 2px #ff0000 ;
+}
+
+/* Menu item active/selected states */
+.wrapper :global(.vds-menu-item[data-active]),
+.wrapper :global(.vds-menu-item[data-selected]) {
+    background-color: rgba(255, 255, 0, 0.2) ;
+    color: #ffff00 ;
+}
+
+/* Tooltip styling for better contrast */
+.wrapper :global(.vds-tooltip),
+.wrapper :global(.vds-tooltip-content) {
+    background-color: #000000 ;
+    /* border: 1px solid #ffff00 ; */
+    color: #ffff00 ;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) ;
+}
+
+/* Dropdown and popup menus */
+.wrapper :global(.vds-dropdown),
+.wrapper :global(.vds-dropdown-content),
+.wrapper :global(.vds-popup),
+.wrapper :global(.vds-popup-content) {
+    background-color: #000000 ;
+    /* border: 1px solid #ffff00 ; */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) ;
+}
+
+/* Settings menu specific styling */
+.wrapper :global(.vds-settings-menu-item),
+.wrapper :global(.vds-settings-menu-item-label) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+}
+
+.wrapper :global(.vds-settings-menu-item:hover) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Captions menu styling */
+.wrapper :global(.vds-captions-menu-item),
+.wrapper :global(.vds-captions-menu-item-label) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+}
+
+.wrapper :global(.vds-captions-menu-item:hover) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Audio menu styling */
+.wrapper :global(.vds-audio-menu-item),
+.wrapper :global(.vds-audio-menu-item-label) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+}
+
+.wrapper :global(.vds-audio-menu-item:hover) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Quality menu styling */
+.wrapper :global(.vds-quality-menu-item),
+.wrapper :global(.vds-quality-menu-item-label) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+}
+
+.wrapper :global(.vds-quality-menu-item:hover) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Playback rate menu styling */
+.wrapper :global(.vds-playback-rate-menu-item),
+.wrapper :global(.vds-playback-rate-menu-item-label) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+}
+
+.wrapper :global(.vds-playback-rate-menu-item:hover) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Chapters menu styling */
+.wrapper :global(.vds-chapters-menu-item),
+.wrapper :global(.vds-chapters-menu-item-label) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+}
+
+.wrapper :global(.vds-chapters-menu-item:hover) {
+    background-color: rgba(255, 255, 0, 0.1) ;
+    color: #ffff00 ;
+}
+
+/* Chapter time indicator styling - specific class targeting */
+.wrapper :global(.vds-chapter-radio-start-time) {
+    background-color: #000000 ;
+    color: #ffff00;
+    /* border: 1px solid #ffff00 ; */
+}
+
+/* Target other potential chapter time classes */
+.wrapper :global(.vds-chapter-radio-end-time),
+.wrapper :global(.vds-chapter-radio-duration),
+.wrapper :global(.vds-chapter-radio-time),
+.wrapper :global(.vds-chapter-start-time),
+.wrapper :global(.vds-chapter-end-time),
+.wrapper :global(.vds-chapter-duration) {
+    background-color: #000000 ;
+    color: #ffff00 ;
+    /* border: 1px solid #ffff00 ; */
+} 
