@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
-import {
-  MediaPlayer,
-  MediaProvider,
-  MediaKeyShortcuts,
-} from "@vidstack/react";
+import { MediaPlayer, MediaProvider } from "@vidstack/react";
 // import { PlayButton, MuteButton } from "@vidstack/react";
 import {
   XMarkIcon,
   CheckIcon,
-  ChevronRightIcon,
-  ComputerIcon,
-  ArrowLeftIcon,
   MicrophoneIcon,
   MusicOffIcon,
   // PlayIcon,
@@ -33,7 +26,6 @@ import TrackList from "../captions/track_list/track_list";
 import TextTrackProps from "@/app/types/text_track";
 import SliderBreakpoint from "@/app/types/slider_breakpoint";
 import InteractiveVideoDialog from "@/app/components/interactive_video_dialog/dialog/interactive_video_dialog";
-
 
 import { disabledMediaPlayerKeyShortcuts } from "@/app/helpers/video_player_shortcuts";
 
@@ -62,7 +54,9 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   const [currentInteractiveBreakpoint, setCurrentInteractiveBreakpoint] =
     useState<SliderBreakpoint | null>(null);
 
-  const [currentMediaKeyShortcuts, setCurrentMediaKeyShortcuts] = useState(disabledMediaPlayerKeyShortcuts);
+  const [currentMediaKeyShortcuts, setCurrentMediaKeyShortcuts] = useState(
+    disabledMediaPlayerKeyShortcuts
+  );
 
   const [audioDescriptionsEnabled, setAudioDescriptionsEnabled] =
     useState(false);
@@ -204,10 +198,12 @@ const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
             // playButton: getSwappedVolumeButton(), // Volume button in play button position
             // muteButton: getSwappedPlayButton(), // Play button in volume button position}
             beforeCaptionButton: getAudioDescriptionsButton(),
-            settingsMenuItemsEnd: <CustomSettingsMenu
-              currentMediaKeyShortcuts={currentMediaKeyShortcuts}
-              onSetMediaPlayerKeyShortcuts={setCurrentMediaKeyShortcuts}
-            />,
+            settingsMenuItemsEnd: (
+              <CustomSettingsMenu
+                currentMediaKeyShortcuts={currentMediaKeyShortcuts}
+                onSetMediaPlayerKeyShortcuts={setCurrentMediaKeyShortcuts}
+              />
+            ),
             beforePlayButton: getInteractiveModeButton(),
             timeSlider: (
               <SliderComponent

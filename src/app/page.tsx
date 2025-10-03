@@ -4,8 +4,6 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 
-import { MediaKeyShortcuts } from "@vidstack/react";
-
 import VidstackPlayer from "./components/vidstack_player/vidstack_player";
 
 // import { i18n_ES } from "@/app/i18n/i18n_ES";
@@ -162,14 +160,16 @@ export default function Home() {
       time: 450,
       label: "Audio Description",
       type: "audio",
-      audioContent: "This is an audio description test testing. This movie is about a fight between humans and sprites, it's a very exciting movie.",
+      audioContent:
+        "This is an audio description test testing. This movie is about a fight between humans and sprites, it's a very exciting movie.",
       breakpointType: "audio-description",
     },
     {
       time: 550,
       label: "Audio Description 2",
       type: "audio",
-      audioContent: "We have reached the end of the movie, thank you for watching! at the end the sprites won the fight.",
+      audioContent:
+        "We have reached the end of the movie, thank you for watching! at the end the sprites won the fight.",
       breakpointType: "audio-description",
     },
   ];
@@ -199,9 +199,6 @@ export default function Home() {
   //   },
   // ];
 
- 
-
-  
   return (
     <div className={styles.page}>
       <main className={styles.main}>
